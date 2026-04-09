@@ -1,5 +1,5 @@
 import { api } from './api'
-import type { Worker } from '../types'
+import type { Worker, WorkerDetail } from '../types'
 
 export interface CreateWorkerPayload {
   name: string
@@ -34,5 +34,10 @@ export async function createWorker(payload: CreateWorkerPayload): Promise<Worker
 
 export async function deleteWorker(workerId: number): Promise<void> {
   await api.delete(`/api/v1/workers/${workerId}`)
+}
+
+export async function fetchWorkerById(workerId: number): Promise<WorkerDetail> {
+  const { data } = await api.get<WorkerDetail>(`/api/v1/workers/${workerId}`)
+  return data
 }
 

@@ -13,9 +13,12 @@ export interface UserMe {
 export interface Camera {
   id: number
   farm_id: number
+  location_id: number | null
   name: string
   rtsp_url: string | null
   location: string | null
+  map_x: number | null
+  map_y: number | null
   hls_playlist_name: string | null
   is_active: boolean
   enabled_for_ai: boolean
@@ -69,5 +72,82 @@ export interface Worker {
   extra_photo_paths: string[]
   has_embedding: boolean
   is_active: boolean
+}
+
+export interface WorkerDetail {
+  id: number
+  farm_id: number
+  name: string
+  worker_type: string
+  document_id: string | null
+  photo: {
+    mime_type: string
+    base64: string
+  } | null
+  extra_photos: Array<{
+    mime_type: string
+    base64: string
+  }>
+  has_embedding: boolean
+  is_active: boolean
+}
+
+export interface RecordingItem {
+  id: number
+  event_id: number | null
+  camera_id: number
+  file_path: string
+  duration_seconds: number | null
+  started_at: string
+  created_at: string
+}
+
+export type LocationType = 'property' | 'building' | 'floor' | 'zone'
+
+export interface LocationItem {
+  id: number
+  farm_id: number
+  name: string
+  type: LocationType
+  parent_id: number | null
+  map_image: string | null
+  created_at: string
+}
+
+export interface LocationTreeItem extends LocationItem {
+  children: LocationTreeItem[]
+}
+
+export interface DashboardOverview {
+  workers_total: number
+  workers_active: number
+  workers_with_embedding: number
+  cameras_total: number
+  cameras_active: number
+  cameras_online: number
+  cameras_offline: number
+  cameras_error: number
+  active_alerts: number
+  critical_alerts_24h: number
+  suspicious_alerts_24h: number
+  events_24h: number
+  recordings_24h: number
+  unknown_people_24h: number
+}
+
+export interface StatsTimePoint {
+  bucket: string
+  total: number
+}
+
+export interface StatsRiskItem {
+  risk_level: string
+  total: number
+}
+
+export interface StatsCameraItem {
+  camera_id: number
+  camera_name: string
+  total: number
 }
 

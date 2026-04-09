@@ -17,6 +17,9 @@ export function AppLayout() {
         <nav className="menu">
           <NavLink to="/">Dashboard</NavLink>
           <NavLink to="/map">Mapa</NavLink>
+          <NavLink to="/locations">Localizacoes</NavLink>
+          <NavLink to="/cameras">Câmeras</NavLink>
+          <NavLink to="/recordings">Gravações</NavLink>
           <NavLink to="/events">Eventos</NavLink>
           <NavLink to="/watch">Monitoramento</NavLink>
           <NavLink to="/workers">Trabalhadores</NavLink>
